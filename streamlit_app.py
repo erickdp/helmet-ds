@@ -26,6 +26,7 @@ opt = {
 
 DEMO_VIDEO = "https://www.youtube.com/watch?v=zu6yUYEERwA"
 
+
 def letterbox(img, new_shape=(640, 640), color=(114, 114, 114), auto=True, scaleFill=False, scaleup=True, stride=32):
     # Resize and pad image while meeting stride-multiple constraints
     shape = img.shape[:2]  # current shape [height, width]
@@ -58,6 +59,7 @@ def letterbox(img, new_shape=(640, 640), color=(114, 114, 114), auto=True, scale
     img = cv2.copyMakeBorder(img, top, bottom, left, right, cv2.BORDER_CONSTANT, value=color)  # add border
     return img, ratio, (dw, dh)
 
+
 def main():
     my_streamlink = Streamlink()
     sv = my_streamlink.streams(DEMO_VIDEO)["480p"].url
@@ -66,7 +68,7 @@ def main():
         with torch.no_grad():
             weights, imgsz = opt['weights'], opt['img-size']
             set_logging()
-            device = select_device('0')
+            device = select_device('cpu')
             half = device.type != 'cpu'
             model = attempt_load(weights, map_location=device)  # load FP32 model
             stride = int(model.stride.max())  # model stride
@@ -126,4 +128,6 @@ def main():
             else:
                 break
 
-main()
+
+if __name__ == '__main__':
+    main()
