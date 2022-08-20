@@ -15,7 +15,7 @@ st.title("## GENERATE ##")
 stframe = st.empty()
 
 opt = {
-    "weights": "../p_model/runs/train/exp/weights/epoch_068.pt",
+    "weights": "./runs/train/exp/weights/epoch_068.pt",
     # Path to weights file default weights are for nano model
     "img-size": 640,  # default image size
     "conf-thres": 0.25,  # confidence threshold for inference.
@@ -122,10 +122,9 @@ def main():
                     # cv2.imshow("frame", img0)
                     # if cv2.waitKey(20) & 0xFF == ord('q'):
                     #     break
-                        stframe.image(img0, channels="BGR", use_column_width=True)
+                    stframe.image(img0, channels="BGR", use_column_width=True)
             else:
                 break
 
 if __name__ == '__main__':
     main()
-    # est
