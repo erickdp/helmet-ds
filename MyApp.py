@@ -66,7 +66,7 @@ def main():
         with torch.no_grad():
             weights, imgsz = opt['weights'], opt['img-size']
             set_logging()
-            device = select_device('cpu')
+            device = select_device('0')
             half = device.type != 'cpu'
             model = attempt_load(weights, map_location=device)  # load FP32 model
             stride = int(model.stride.max())  # model stride
